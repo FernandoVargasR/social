@@ -10,7 +10,7 @@
    <form action="{{ route('programa.update', $programa)}}" method="POST">
       @method('PATCH')
    @else
-   {{--Creacion de programa}}
+   {{--Creacion de programa--}}
    <form action="{{ route('programa.store')}}" method="POST">
    @endif
 
