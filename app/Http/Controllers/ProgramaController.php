@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramaController extends Controller
 {
@@ -14,7 +15,9 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa::get();
+        //$programas = Programa::get();
+        $programas = Auth::user()->programas()->get();
+
         return  view('programa.programaIndex', compact('programas'));
     }
 
@@ -44,6 +47,7 @@ class ProgramaController extends Controller
             'folio' => 'required|integer|min:1',
             'dependencia' => 'required|string|min:4|max:6',
         ]);
+        $request->merge(['user_id' => Auth::id()]);
         Programa::create($request->all());
         return redirect()->route('programa.index');
     }
