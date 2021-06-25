@@ -37,6 +37,13 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => ['required', 'string','min:5', 'max:255'],
+            'titular' => ['required', 'string','min:5', 'max:255'],
+            'dependencia' => 'required|string|min:5|max:255',
+            'folio' => 'required|integer|min:1',
+            'dependencia' => 'required|string|min:4|max:6',
+        ]);
         Programa::create($request->all());
         return redirect()->route('programa.index');
     }
@@ -72,6 +79,13 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
+        $request->validate([
+            'nombre' => ['required', 'string','min:5', 'max:255'],
+            'titular' => ['required', 'string','min:5', 'max:255'],
+            'dependencia' => 'required|string|min:5|max:255',
+            'folio' => 'required|integer|min:1',
+            'dependencia' => 'required|string|min:4|max:6',
+        ]);
         Programa::where('id', $programa->id)->update($request->except('_token', '_method'));
 
         return redirect()->route('programa.show', $programa);
