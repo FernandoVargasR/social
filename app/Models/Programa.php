@@ -12,4 +12,8 @@ class Programa extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function prestadores(){
+        return $this->belongsToMany(Prestador::class);
+    }
 }

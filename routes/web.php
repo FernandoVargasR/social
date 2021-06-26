@@ -14,5 +14,5 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
+Route::post('programa/{programa}/agrega-prestador',[ProgramaController::class,'agregaPrestador'])->name('programa.agrega-prestador');
 Route::resource('programa', ProgramaController::class);//->middleware('auth');

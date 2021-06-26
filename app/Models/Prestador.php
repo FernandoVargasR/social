@@ -10,4 +10,8 @@ class Prestador extends Model
     use HasFactory;
     protected $table = 'prestadores';
     public $timestamps = false;
+
+    public function programa(){
+        return $this->belongsToMany(Programa::class);
+    }
 }
